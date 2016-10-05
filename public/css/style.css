@@ -26,8 +26,7 @@ body {
 .tipos-no-oculto {				
 	background: #ce2e3b;
     position: fixed;
-    left: -10px;
-	overflow: hidden;
+    left: -10px;	
     top: 60px;
     bottom: -60px;	
 	width: 10px;
