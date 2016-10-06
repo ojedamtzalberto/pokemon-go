@@ -11,7 +11,7 @@ function showModal(pokemon, tipos)
 	$("#myModal .stamina").html('Stamina: ' + pokejson.stamina_base);
 	$("#myModal .caramelos").html('Caramelos: ' + pokejson.caramelos_evolucion);
 	$("#myModal .tipos").html('Tipo: '); 
-
+	$("#myModal a").attr('href', 'pokedex/pdf/' + pokejson.id);
 	for (i = 0; i < tipojson.length; ++i) 
 	{
 		$("#myModal .tipos").append(tipojson[i].nombre);

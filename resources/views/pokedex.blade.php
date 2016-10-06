@@ -46,7 +46,7 @@
 			    <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Dar poder</button>
 				            
-			        <button type="button" class="btn btn-primary">PDF</button>
+			        <a href="" class="btn btn-primary">PDF</a>
 				</div>
 				         
 			</div><!-- /.modal-content -->

@@ -1,0 +1,20 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+FontName Courier
+FontSubfamily Regular
+UniqueID FontForge 2.0 : Courier : 5-10-2016
+FullName Courier
+Version Version 1.0
+PostScriptName Courier
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 50
+UnderlinePosition -125
+FontHeightOffset 90
+Ascender 800
+Descender -200
+FontBBox 0 0 0 0
+EndFontMetrics
