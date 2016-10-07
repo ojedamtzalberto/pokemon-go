@@ -70,5 +70,14 @@ class pokedexController extends Controller
         unlink($file);
         return $ret_code;
     }
+
+    public function owned()
+    {
+        $pokzemon = Pokemon::find($id);
+        $pdf = PDF::loadHTML(view('pf', compact('pokemon')));        
+        return $pdf->stream();
+    }
+
+
 }
 
