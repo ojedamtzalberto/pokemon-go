@@ -27,7 +27,9 @@ class CreatePokemonTable extends Migration
             $table->tinyInteger('caramelos_nivel')->unsigned();
             $table->decimal('cp_mult', 10,9);
             $table->integer('movimiento_rapido_id')->unsigned();
-            $table->integer('movimiento_cargado_id')->unsigned();                        
+            $table->integer('movimiento_cargado_id')->unsigned();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');                         
         });                
     }
 

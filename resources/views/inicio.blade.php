@@ -4,10 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">   
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     <title>Pokemon Go</title>
 </head>
 <body>
+        <audio autoplay>
+          <source src="shttp://66.90.91.26/ost/pokemon-gameboy-sound-collection/aipycrsoym/101-opening.mp3"></source>
+        </audio autoplay>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -202,9 +205,15 @@
         </div>
       </div>
     </nav>
-    <div class="container-fluid">
-        @yield('contenido')
-    </div>
+    <div class="container cuerpo">
+            <div class="row">
+                <div class="col-xs-12">
+                    @yield('encabezado')
+
+                    @yield('contenido')
+                </div>
+            </div>
+        </div>
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>

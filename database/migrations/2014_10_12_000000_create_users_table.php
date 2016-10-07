@@ -17,7 +17,9 @@ class CreateUsersTable extends Migration
             $table->string('usuario')->unique();            
             $table->rememberToken();
             $table->string('nombre');
-            $table->integer('polvos');            
+            $table->integer('polvos');   
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');         
         });
     }
 

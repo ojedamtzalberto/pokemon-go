@@ -17,6 +17,8 @@ class CreateTableMovimientoRapido extends Migration
             $table->string('nombre');
             $table->decimal('dps', 3, 1);
             $table->integer('tipo_id')->unsigned();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at'); 
         });                        
     }
 

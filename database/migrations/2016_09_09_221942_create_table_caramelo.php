@@ -13,7 +13,9 @@ class CreateTableCaramelo extends Migration
     public function up()
     {
         Schema::create('caramelos', function (Blueprint $table) {
-            $table->integer('id')->unsigned();         
+            $table->integer('id')->unsigned();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');          
         });        
     }
 

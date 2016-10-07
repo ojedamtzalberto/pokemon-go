@@ -1,0 +1,27 @@
+@font-face {
+      font-family: 'Alex Brush';
+      font-style: normal;
+        font-weight: 400;
+      src: url('fonts/Munro.ttf') format('truetype');      
+    }
+  .textfix{
+	color:white;
+	top:100px;
+	left: 150px;
+}
+.textfont{
+	font-family: Alex Brush;
+}
+.imgfix{
+	top:-45px;
+	left:-45px;
+	max-height: 1060px;
+	z-index: -2;
+}
+.abfix{
+	position: absolute;
+}
+.pokefix{
+	top:275px;
+	left:450px;
+}

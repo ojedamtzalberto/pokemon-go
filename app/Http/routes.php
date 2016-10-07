@@ -14,6 +14,6 @@
 Route::get('/', 'pokedexController@inicio');
 Route::get('/pokedex/tipo/{tipo_id}', 'pokedexController@filtrar_tipo');
 Route::get('/pokedex/pokemon', 'pokedexController@busca_pokemon');
-Route::get('/pokedex/pdf/{id}', 'pokedexController@pdf');
+Route::get('/pdf/{id}', 'pokedexController@mPDF');
 Route::get('/login', 'pokedexController@login');
 Route::post('/login-success', 'pokedexController@login_success');
