@@ -1,56 +1,95 @@
 @extends('inicio')
 
 @section('contenido')	
-
 	@include('tipos')
+	@foreach($pokemons as $po)
+		<div class="contenedor" >
+            <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->id}}">
+                <img  class="displayed" src="{{asset('img')}}/{{$po->id}}.png">
+                <img  class="bot-fix" src="{{asset('img/1_m.png')}}">
+                <?php
+                  $capname =ucfirst("$po->nombre");
+                  $idzero = $value = sprintf( '%03d', $po->id);
+                ?>  
+                <li class="textfixnum">#{{$idzero}}</li>
+                <li class="textfixname">{{$capname}}</li>
+                 @foreach($po->tipos as $tipo)                   
+                  <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
+                 @endforeach
+            </div>  
+          </div>  
+          <div class="modal fade " id="{{$po->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-g" role="document">
+              <div class="modal-content">
+                <div class="modal-header modal-h">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                
+                  <h5 class="textbold"><span class="badge">#{{$idzero}}</span> {{$capname}} </h5>
+                </div>
+                <div class="modal-body modal-b">
+                  <div >
+                    <img class="displayed" src="{{asset('img')}}/{{$po->id}}.png" alt="" />
+                  </div>
+                </div>
+                 
+                  <table class="table table-hover">
+                      <thead>
+                        <tr  class="active">
+                          <th class="centertext">Tipo:
+                              @foreach($po->tipos as $tipo)                   
+                                <span class="color{{$tipo->nombre}} label">{{$tipo->nombre}}</span>
+                              @endforeach     
+                          </th>
 
-	@foreach($pokemons as $pokemon)
-		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">			
-			<div class="pokemon-info">
-				<a href='javascript:;' onclick="showModal('{{$pokemon}}', '{{$pokemon->tipos}}')">			
-					<img src="{{asset('img')}}/{{$pokemon->id}}.png">					
-				</a>
-				<p class="nombre">{{ $pokemon->nombre }}</p>
-				<div class="tipos-container">
-					@foreach($pokemon->tipos as $tipo)
-						<a href="{{url('/pokedex/tipo')}}/{{strtolower($tipo->id)}}"><span class="tipo {{strtolower($tipo->nombre)}}">{{ $tipo->nombre }}</span></a>
-					@endforeach	
-				</div>				
-			</div>			
-		</div>
+                        </tr>
+                      </thead>                      
+                  </table> 
+                  <?php
+                      $att =$po->ataque_base/16;
+                      $def =$po->defensa_base/16;
+                      $sta =$po->stamina_base/16;
+                  ?>
+                 <table class="table table-hover bor cellspacing="0" cellpadding="0"">
+                  <tbody>
+                    <tr>
+                      <td class="table-nom noBorder">Ataque</td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-warning" style="width: {{$att}}%"></div>
+                        </div>                                              
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table-nom noBorder">Defensa</td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-warning" style="width: {{$def}}%"></div>
+                        </div>                                              
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="table-nom noBorder">Stamina</td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-warning" style="width: {{$sta}}%"></div>
+                        </div>                                              
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>                  
+                                      
+                <div class="modal-footer modal-f">
+                   <a href="/pokemon-go/public/pdf/{{$po->id}}" class="btn  btn-default ">PDF</a>
+                </div>
+              </div>
+            </div>
+          </div>    
+
+
+
 	@endforeach
 
-	<div class="col-md-4 col-md-offset-4 paginator">
-		{!! $pokemons->render() !!}
-	</div>
 
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-						   
-		<div class="modal-dialog">
-			<div class="modal-content">
-			        
-			    <div class="modal-header">
-			        <h4 class="modal-title" id="myModalLabel"></h4>
-			    </div>
-				         
-			    <div class="modal-body">
-			    	<img src="">
-			    	<p class="pok-id"></p>
-			    	<p class="ataque"></p>		            
-			    	<p class="defensa"></p>		            
-			    	<p class="stamina"></p>		            
-			    	<p class="caramelos"></p>
-			    	<p class="tipos"></p>					    	         
-			    </div>
-				         
-			    <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Dar poder</button>
-				            
-			        <a href="" class="btn btn-primary">PDF</a>
-				</div>
-				         
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-						  
-	</div><!-- /.modal -->
 @stop

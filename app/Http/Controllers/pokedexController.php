@@ -12,6 +12,14 @@ use PDF;
 
 class pokedexController extends Controller
 {
+    public function mPDF($id) {
+        $pokemon = Pokemon::find($id);
+        $vista=view('pdf', compact('pokemon'));
+        $dompdf=\App::make('dompdf.wrapper');
+        $dompdf->loadHTML($vista);
+        return $dompdf->stream();
+    }
+
     public function inicio()
     {
     	$pokemons = Pokemon::paginate(24);

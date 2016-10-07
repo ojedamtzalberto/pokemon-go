@@ -19,7 +19,9 @@ class CreateTablePokedex extends Migration
             $table->smallInteger('ataque_base')->unsigned();
             $table->smallInteger('defensa_base')->unsigned();
             $table->smallInteger('stamina_base')->unsigned();
-            $table->tinyInteger('caramelos_evolucion')->unsigned();            
+            $table->tinyInteger('caramelos_evolucion')->unsigned();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');             
         });
     }
 

@@ -14,7 +14,9 @@ class CreatePokemonTipoTable extends Migration
     {
         Schema::create('pokemon_tipo', function (Blueprint $table) {
             $table->integer('pokemon_id')->unsigned();
-            $table->integer('tipo_id')->unsigned();            
+            $table->integer('tipo_id')->unsigned();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');             
         });        
     }
 

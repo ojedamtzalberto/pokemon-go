@@ -1,0 +1,208 @@
+/*Barrita */
+#tipo-lista li {		
+	color: #FDFDFE;
+	font-size: 16px;
+	font-weight: bold;
+	list-style: none;	
+	margin: 10px 20px;
+	text-transform: uppercase;	
+}
+
+#tipo-icono {
+	position: absolute;
+	right: -50px;
+	width: 50px;
+}
+
+#tipo-lista {	
+	background: #ce2e3b;		
+	position: absolute;	
+	right: 0px;
+}
+
+.tipos-no-oculto {				
+	background: #ce2e3b;
+    position: fixed;
+    left: -10px;	
+    top: 60px;
+    bottom: -60px;	
+	width: 10px;
+    transition: width 1s;    
+	-webkit-transition: width 1s; /* Safari */
+    z-index: 10;
+}
+
+.tipos-no-oculto:hover {
+	width: 150px;
+}
+
+.oculto {	
+	width: 100%;
+}
+
+
+
+@font-face {/*Importando una fuente ?)*/
+    font-family: pixe;
+    src: url('../fonts/Munro.woff') format("woff");
+}
+
+.modal-g{/*Para que la modal no quede gigante*/
+	max-width: 400px;
+}
+.modal-h{	/*Fondo para la parte de arriba de la modal (header)*/
+	background-image: url("../img/1_b.png");
+}
+.modal-b{/*fondo y color para el cuerpo de la modal*/
+	background-image: url("../img/1_f.png");
+    background-color: #C2C2C2;
+}
+.modal-f{/*fondo para el footer de la modal*/
+	background-image: url("../img/1_b.png");
+}
+
+td.table-nom{/*Sin esto, las barras que estan en la modal son muy pequeñas porque dividen el espacio con las letras midad y mitad*/
+	width: 20px;
+	font-weight: bold;
+}
+
+.pokefondo{ /*Cuadro, donde va cada pokemon*/
+	background-image: url("../img/1_f.png");
+    background-color: #C2C2C2;
+    margin:20px;
+    padding: 30px;
+    max-width: 245px;
+    max-height: 300px;
+    border-radius: 25px;
+    border: 6px solid #FFFFFF;
+    border-style: solid;
+    border-bottom-width: 95px;
+
+}
+.pokefondo:hover {
+    background-color: #B01C3A;
+ 	box-shadow: 2px 2px 10px #000000;
+}
+
+img.bot-fix{ /*Acomoda la muesca que va abajo de la imagen de pokemon*/
+	right:35px;
+	top:10px;
+	position: relative;
+	margin-bottom: 17px;
+}
+body{	
+	background-image: url("../img/1_b.png");
+}
+.textfixname{ /*Los Nombres del pokemon*/
+	font-size: 130%;
+	color:#313131;
+	text-decoration-style: solid;
+	font-weight: bold;	
+}
+
+.textbold{ /*No se porque separe esto*/
+	font-weight: bold;	
+}
+.centertext{
+	text-align: center;
+}
+.textfixnum{/*El numero del pokemon (ID)*/
+	font-size: 110%;
+	font-family: pixe;
+	color:#919191;
+	text-decoration-style: solid;
+	font-weight: bold;
+	
+}
+img.displayed { /*Imagen del pokemon*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+li { 
+    list-style-type: none;
+}
+table, tr, td { /*Detalles de la tabla que no me gustaban(son las lineas que salen)*/
+    border: none! important;
+}
+
+.sizelabel{   /*Tamaño de el label de los tipos de pokemon*/
+	font-size: 85%;
+}
+
+/*COLORES PARA LOS TIPOS DE POKEMON*/
+.colorBicho{
+	background-color: #729F3F;
+}
+.colorSiniestro{
+	background-color: #707070;
+}
+.colorDragon{
+	background: linear-gradient(
+	   to top, 
+	   #53A4CF 0%, 
+	   #53A4CF 50%, 
+	   #F16E57 50%, 
+	   #F16E57 100%
+	);
+}
+.colorEléctrico{
+	background-color: #EED535;
+}
+.colorHada{
+	background-color: #FDB9E9;
+}
+.colorLucha{
+	background-color: #D56723;
+}
+.colorFuego{
+
+	background-color: #FD7D24;
+}
+.colorVolador{
+	background: linear-gradient(
+	   to top, 
+	   #3DC7EF 0%, 
+	   #3DC7EF 50%, 
+	   #BDB9B8 50%, 
+	   #BDB9B8 100%
+	);	
+}
+.colorFantasma{
+	background-color: #7B62A3;
+}
+.colorPlanta{
+	background-color: #9BCC50;
+}
+.colorTierra{
+	background: linear-gradient(
+	   to top, 
+	   #F7DE3F 0%, 
+	   #F7DE3F 50%, 
+	   #AB9842 50%, 
+	   #AB9842 100%
+	);		
+}
+.colorHielo{
+	background-color:#51C4E7;
+}
+.colorNormal{
+	background-color:#A4ACAF;
+}
+.colorVeneno{
+	background-color:#B97FC9;
+}
+.colorPsíquico{
+	background-color:#F366B9;
+}
+.colorRoca{
+	background-color:#A38C21;
+}
+.colorAcero{
+	background-color:#9EB7B8;
+}
+.colorAgua{
+	background-color: #4592C4;
+}
+

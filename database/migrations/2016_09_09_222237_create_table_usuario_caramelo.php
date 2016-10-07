@@ -14,7 +14,9 @@ class CreateTableUsuarioCaramelo extends Migration
     {
         Schema::create('caramelo_usuario', function (Blueprint $table) {
             $table->integer('usuario_id')->unsigned();
-            $table->integer('caramelo_id')->unsigned();            
+            $table->integer('caramelo_id')->unsigned();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');             
         });        
     }
 
