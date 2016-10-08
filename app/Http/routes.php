@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'pokedexController@inicio');
+Route::get('/owned', 'pokedexController@owned');
 Route::get('/pokedex/tipo/{tipo_id}', 'pokedexController@filtrar_tipo');
 Route::get('/pokedex/pokemon', 'pokedexController@busca_pokemon');
 Route::get('/pdf/{id}', 'pokedexController@mPDF');
