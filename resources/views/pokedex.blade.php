@@ -1,23 +1,20 @@
 @extends('inicio')
-
-@section('contenido')	
-	@include('tipos')
-	@foreach($pokemons as $po)
-		<div class="contenedor" >
-            <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->id}}">
-                <img  class="displayed" src="{{asset('img')}}/{{$po->id}}.png">
-                <img  class="bot-fix" src="{{asset('img/1_m.png')}}">
-                <?php
-                  $capname =ucfirst("$po->nombre");
-                  $idzero = $value = sprintf( '%03d', $po->id);
-                ?>  
-                <li class="textfixnum">#{{$idzero}}</li>
-                <li class="textfixname">{{$capname}}</li>
-                 @foreach($po->tipos as $tipo)                   
-                  <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
-                 @endforeach
-            </div>  
-          </div>  
+  @section('contenido')	
+  	@include('tipos')
+  	  @foreach($pokemons as $po)
+        <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->id}}">
+            <img  class="displayed" src="{{asset('img')}}/{{$po->id}}.png">
+            <img  class="bot-fix" src="{{asset('img/1_m.png')}}">
+            <?php
+              $capname =ucfirst("$po->nombre");
+              $idzero = $value = sprintf( '%03d', $po->id);
+            ?>  
+            <li class="textfixnum">#{{$idzero}}</li>
+            <li class="textfixname">{{$capname}}</li>
+             @foreach($po->tipos as $tipo)                   
+              <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
+             @endforeach
+        </div>  
           <div class="modal fade " id="{{$po->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-g" role="document">
               <div class="modal-content">

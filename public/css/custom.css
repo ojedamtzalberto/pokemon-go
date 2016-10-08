@@ -1,27 +1,27 @@
 /*Barrita */
 #tipo-lista li {		
 	color: #FDFDFE;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: bold;
 	list-style: none;	
 	margin: 10px 20px;
-	text-transform: uppercase;	
+	text-transform: capitalize;	
 }
 
 #tipo-icono {
 	position: absolute;
-	right: -50px;
+	right: -44px;
 	width: 50px;
 }
 
 #tipo-lista {	
-	background: #ce2e3b;		
+	background: #47494d;		
 	position: absolute;	
 	right: 0px;
 }
 
 .tipos-no-oculto {				
-	background: #ce2e3b;
+	background: #47494d;
     position: fixed;
     left: -10px;	
     top: 60px;
