@@ -81,9 +81,32 @@ class pokedexController extends Controller
 
     public function owned()
     {
-        $pokzemon = Pokemon::find($id);
-        $pdf = PDF::loadHTML(view('pf', compact('pokemon')));        
-        return $pdf->stream();
+        $pokemon = Owned::all();
+        return view('actualpokemon',compact('pokemon'));
+    }
+
+    public function powerup($id)
+    {
+        $pokemon = Owned::find($id);
+        return view('actualpokemon',compact('pokemon'));
+        if ($a > $b) {
+            echo "a is bigger than b";
+            $b = $a;
+        }
+
+        $i=0;
+        switch ($i) {
+            case 0:
+                echo "i=0";
+                break;
+            case 1:
+                echo "i=1";
+                break;
+            case 2:
+                echo "i=2";
+                break;
+}
+
     }
 
 

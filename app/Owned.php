@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Owned extends Model
 {
-    protected $table = 'pokemons';
+    protected $table = 'owned_pokemons';
 
     public function pokemanz()
     {
