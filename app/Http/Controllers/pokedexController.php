@@ -57,26 +57,24 @@ class pokedexController extends Controller
     }
 
     public function login_success(Request $request)
-    {
+    {        
         $usuario = $request->input('email');
         $pwd = $request->input('pwd');
         exec('/usr/bin/python /var/www/html/pokemon-go/public/scripts/demo.py -a "google" -u "'.$usuario.'" -p "'.$pwd.'"', $output, $ret_code);
         $file = getcwd().'/json/'.$output[0].'.json';
-        $data = json_decode(file_get_contents($file));
+        $data = json_decode(file_get_contents($file));        
 
-        echo ($file);
-
-        foreach($data->{'pokemon'} as $pokemon) {            
-            echo ($pokemon->pokemon_id).'<br>';
-            echo ($pokemon->cp).'<br>';
-            echo ($pokemon->individual_attack).'<br>';
-            echo ($pokemon->individual_defense).'<br>';
-            echo ($pokemon->individual_stamina).'<br>';
-            echo ($pokemon->cp_multiplier).'<br>';
-        }
+        foreach($data->pokemon as &$pok) {
+            $pokedex_pokemon = Pokemon::find($pok->pokemon_id);
+            $pok->nombre = $pokedex_pokemon->nombre;
+            $pok->tipos = $pokedex_pokemon->tipos;
+            $pok->ataque_base = $pokedex_pokemon->ataque_base;            
+            $pok->defensa_base = $pokedex_pokemon->defensa_base;            
+            $pok->stamina_base = $pokedex_pokemon->stamina_base;            
+        }                            
 
         unlink($file);
-        return $ret_code;
+        return view('pokemons', compact('data'));
     }
 
     public function owned()
@@ -105,7 +103,7 @@ class pokedexController extends Controller
             case 2:
                 echo "i=2";
                 break;
-}
+        }
 
     }
 
