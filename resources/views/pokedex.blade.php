@@ -1,23 +1,20 @@
 @extends('inicio')
-
-@section('contenido')	
-	@include('tipos')
-	@foreach($pokemons as $po)
-		<div class="contenedor" >
-            <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->id}}">
-                <img  class="displayed" src="{{asset('img')}}/{{$po->id}}.png">
-                <img  class="bot-fix" src="{{asset('img/1_m.png')}}">
-                <?php
-                  $capname =ucfirst("$po->nombre");
-                  $idzero = $value = sprintf( '%03d', $po->id);
-                ?>  
-                <li class="textfixnum">#{{$idzero}}</li>
-                <li class="textfixname">{{$capname}}</li>
-                 @foreach($po->tipos as $tipo)                   
-                  <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
-                 @endforeach
-            </div>  
-          </div>  
+  @section('contenido')	
+  	@include('tipos')
+  	  @foreach($pokemons as $po)
+        <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->id}}">
+            <img  class="displayed" src="{{asset('img')}}/{{$po->id}}.png">
+            <img  class="bot-fix" src="{{asset('img/1_m.png')}}">
+            <?php
+              $capname =ucfirst("$po->nombre");
+              $idzero = $value = sprintf( '%03d', $po->id);
+            ?>  
+            <li class="textfixnum">#{{$idzero}}</li>
+            <li class="textfixname">{{$capname}}</li>
+             @foreach($po->tipos as $tipo)                   
+              <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
+             @endforeach
+        </div>  
           <div class="modal fade " id="{{$po->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-g" role="document">
               <div class="modal-content">
@@ -27,6 +24,8 @@
                   </button>
                 
                   <h5 class="textbold"><span class="badge">#{{$idzero}}</span> {{$capname}} </h5>
+                  <h5 class="textcp"><span>CP</span></h5>
+                  <h5 class="numcp"><span>999</span></h5>
                 </div>
                 <div class="modal-body modal-b">
                   <div >
@@ -56,25 +55,31 @@
                     <tr>
                       <td class="table-nom noBorder">Ataque</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$att}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$att}}%;">
+                          <span class="show">{{$po->ataque_base}}</span>
+                        </div>
+                      </div>                                                           
                       </td>
                     </tr>
                     <tr>
                       <td class="table-nom noBorder">Defensa</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$def}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$def}}%;">
+                          <span class="show">{{$po->defensa_base}}</span>
+                        </div>
+                      </div>                                               
                       </td>
                     </tr>
                     <tr>
                       <td class="table-nom noBorder">Stamina</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$sta}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$sta}}%;">
+                          <span class="show">{{$po->stamina_base}}</span>
+                        </div>
+                      </div>                                             
                       </td>
                     </tr>
                   </tbody>
