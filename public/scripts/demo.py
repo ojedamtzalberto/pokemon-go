@@ -73,16 +73,16 @@ if __name__ == '__main__':
         data = {
             'trainer': {
                 'nombre': trainer.session._state.profile.player_data.username,
-                'team': trainer.session._state.profile.player_data.team
+                'team': trainer.session._state.profile.player_data.team,
+                'polvos': trainer.session._state.profile.player_data.currencies[1].amount
             },
-            'pokemon': {}    
+            'pokemon': {},
+            'caramelos': {}
         }
 
         print(filename)
 
-        for pokemon in trainer.session.inventory.party:
-            s = "\n\t{0}".format(pokemon)
-            #print(str(pokemon.pokemon_id))    
+        for pokemon in trainer.session.inventory.party:            
             data['pokemon'][pokemon.id] = {'cp': pokemon.cp,
                                      'id': pokemon.pokemon_id,
                                      'pokemon_id': int(pokemon.id) / 2 + randint(0,1000),
@@ -90,6 +90,10 @@ if __name__ == '__main__':
                                      'defensa_individual': pokemon.individual_defense,
                                      'stamina_individual': pokemon.individual_stamina,
                                      'cp_multiplier': pokemon.cp_multiplier }
+
+        for caramelo in trainer.session.inventory.candies:
+            data['caramelos'][caramelo] = {'id': caramelo,
+                                        'cantidad': trainer.session.inventory.candies[caramelo] }
 
         json.dump(data, file)
         file.close()

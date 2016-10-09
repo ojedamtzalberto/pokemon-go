@@ -10,6 +10,7 @@ use App\Pokemon;
 use App\Tipo;
 use App\Trainer;
 use App\Owned;
+use App\Caramelo;
 use App\PokemonHelper;
 use PDF;
 
@@ -108,6 +109,8 @@ class pokedexController extends Controller
         $file = getcwd().'/json/'.$output[0].'.json';
         $data = @json_decode(file_get_contents($file, true));
 
+        dd($data);
+
         //Carga del json a la base de datos               
         foreach($data->pokemon as &$pok) {
             //Se formatea a 3 digitos el cp_multiplier para hacer la comparacion de getLevel mas facil
@@ -125,7 +128,19 @@ class pokedexController extends Controller
             $owned->stamina_individual = $pok->stamina_individual;
             $owned->save();
         }
+
+        foreach($data->caramelos as &$c) {
+            $caramelo = new Caramelo;
+            $caramelo->id = $c->id;
+            $caramelo->cantidad = $c->cantidad;
+            $caramelo->save();
+        }
         
+        $trainer = new Trainer;
+        $trainer->nombre = $data->trainer->nombre;
+        $trainer->polvos = $data->trainer->polvos;
+        $trainer->save();
+
         $pokemons = Owned::orderBy('pokemon_id')->get();
         $tipos = Tipo::orderBy('nombre')->get();
 
