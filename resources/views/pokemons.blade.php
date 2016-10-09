@@ -1,20 +1,19 @@
 @extends('inicio')
-
-@section('contenido')		
-	@foreach($pokemons as $po)			
-		<div class="contenedor" >
-            <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->pokemanz->id}}">
-                <img  class="displayed" src="{{asset('img')}}/{{$po->pokemanz->id}}.png">
-                <img  class="bot-fix" src="{{asset('img/1_m.png')}}">
-                <?php                  
-                  $idzero = $value = sprintf( '%03d', $po->pokemanz->id);
-                ?>  
-                <li class="textfixnum">#{{$idzero}}</li>
-                <li class="textfixname">{{$po->pokemanz->nombre}}</li>                
-                 
-            </div>  
-          </div>  
-          <div class="modal fade " id="{{$po->pokemanz->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  @section('contenido')     
+      @foreach($pokemons as $po)
+        <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->owned_id}}">
+            <img  class="displayed" src="{{asset('img')}}/{{$po->pokemanz->id}}.png">
+            <img  class="bot-fix" src="{{asset('img/1_m.png')}}">
+            <?php              
+              $idzero = $value = sprintf( '%03d', $po->pokemanz->id);
+            ?>  
+            <li class="textfixnum">#{{$idzero}}</li>
+            <li class="textfixname">{{$po->pokemanz->nombre}}</li>
+             @foreach($po->pokemanz->tipos as $tipo)                   
+              <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
+             @endforeach
+        </div>  
+          <div class="modal fade " id="{{$po->owned_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-g" role="document">
               <div class="modal-content">
                 <div class="modal-header modal-h">
@@ -22,7 +21,9 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 
-                  <h5 class="textbold"><span class="badge">#{{$idzero}}</span> {{$po->pokemanz->nombre}} </h5>
+                  <h5 class="textbold"><span class="badge">#{{$idzero}}</span><span>{{$po->pokemanz->nombre}}</span> nivel {{$po->nivel}}</h5>
+                  <h5 class="textcp"><span>CP</span></h5>
+                  <h5 class="numcp"><span>{{$po->cp}}</span></h5>
                 </div>
                 <div class="modal-body modal-b">
                   <div >
@@ -34,41 +35,57 @@
                       <thead>
                         <tr  class="active">
                           <th class="centertext">Tipo:
-                              
+                              @foreach($po->pokemanz->tipos as $tipo)                   
+                                <span class="color{{$tipo->nombre}} label">{{$tipo->nombre}}</span>
+                              @endforeach     
                           </th>
 
                         </tr>
                       </thead>                      
                   </table> 
                   <?php
-                      $att =$po->ataque_base/16;
-                      $def =$po->defensa_base/16;
-                      $sta =$po->stamina_base/16;
+                      $att_actual = ($po->pokemanz->ataque_base + $po->ataque_individual) * $po->cp_mult; 
+                      $att_max = ($po->pokemanz->ataque_base + 15) * 0.79030001; 
+                      $att = ($att_actual / $att_max) * 100;                      
+
+                      $def_actual = ($po->pokemanz->defensa_base + $po->defensa_individual) * $po->cp_mult; 
+                      $def_max = ($po->pokemanz->defensa_base + 15) * 0.79030001; 
+                      $def = ($def_actual / $def_max) * 100;
+
+                      $sta_actual = ($po->pokemanz->stamina_base + $po->stamina_individual) * $po->cp_mult; 
+                      $sta_max = ($po->pokemanz->stamina_base + 15) * 0.79030001; 
+                      $sta = ($sta_actual / $sta_max) * 100;
                   ?>
                  <table class="table table-hover bor cellspacing="0" cellpadding="0"">
                   <tbody>
                     <tr>
                       <td class="table-nom noBorder">Ataque</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$att}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$att}}%;">
+                          <span class="show">{{(int)$att_actual}} / {{(int)$att_max}}</span>
+                        </div>
+                      </div>                                                           
                       </td>
                     </tr>
                     <tr>
                       <td class="table-nom noBorder">Defensa</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$def}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$def}}%;">
+                          <span class="show">{{(int)$def_actual}} / {{(int)$def_max}}</span>
+                        </div>
+                      </div>                                               
                       </td>
                     </tr>
                     <tr>
                       <td class="table-nom noBorder">Stamina</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$sta}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$sta}}%;">
+                          <span class="show">{{(int)$sta_actual}} / {{(int)$sta_max}}</span>
+                        </div>
+                      </div>                                             
                       </td>
                     </tr>
                   </tbody>
@@ -81,8 +98,7 @@
             </div>
           </div>    
 
+  @endforeach
 
-
-	@endforeach
 
 @stop

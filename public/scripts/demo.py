@@ -83,12 +83,12 @@ if __name__ == '__main__':
         for pokemon in trainer.session.inventory.party:
             s = "\n\t{0}".format(pokemon)
             #print(str(pokemon.pokemon_id))    
-            data['pokemon'][pokemon.id] = {'cp': pokemon.cp, 
+            data['pokemon'][pokemon.id] = {'cp': pokemon.cp,
                                      'id': pokemon.pokemon_id,
-                                     'pokemon_id': pokemon.id,
-                                     'individual_attack': pokemon.individual_attack,
-                                     'individual_defense': pokemon.individual_defense,
-                                     'individual_stamina': pokemon.individual_stamina,
+                                     'pokemon_id': int(pokemon.id) / 2 + randint(0,1000),
+                                     'ataque_individual': pokemon.individual_attack,
+                                     'defensa_individual': pokemon.individual_defense,
+                                     'stamina_individual': pokemon.individual_stamina,
                                      'cp_multiplier': pokemon.cp_multiplier }
 
         json.dump(data, file)
