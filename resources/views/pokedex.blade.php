@@ -1,6 +1,6 @@
 @extends('inicio')
   @section('contenido')	
-  	@include('tipos')
+  	@include('tipos_pokedex')
   	  @foreach($pokemons as $po)
         <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->id}}">
             <img  class="displayed" src="{{asset('img')}}/{{$po->id}}.png">

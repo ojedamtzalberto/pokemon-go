@@ -1,5 +1,6 @@
 @extends('inicio')
   @section('contenido')     
+    @include('tipos_owned_pokemon')
       @foreach($pokemons as $po)
         <div class="col-md-3 pokefondo" data-toggle="modal" data-target="#{{$po->owned_id}}">
             <img  class="displayed" src="{{asset('img')}}/{{$po->pokemanz->id}}.png">
@@ -21,7 +22,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 
-                  <h5 class="textbold"><span class="badge">#{{$idzero}}</span><span>{{$po->pokemanz->nombre}}</span> nivel {{$po->nivel}}</h5>
+                  <h5 class="textbold"><span class="badge">#{{$idzero}}</span><span> {{$po->pokemanz->nombre}}</span> nivel {{$po->nivel}}</h5>
                   <h5 class="textcp"><span>CP</span></h5>
                   <h5 class="numcp"><span>{{$po->cp}}</span></h5>
                 </div>
