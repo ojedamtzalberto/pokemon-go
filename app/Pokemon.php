@@ -14,6 +14,6 @@ class Pokemon extends Model
     }
     public function ownedpoke()
     {
-    	return $this->belongsToMany('App\Owned');
+    	return $this->hasMany('App\Owned');
     }
 }

@@ -99,6 +99,7 @@ body{
 	color:#313131;
 	text-decoration-style: solid;
 	font-weight: bold;	
+	text-transform: capitalize;
 }
 
 .textbold{ /*No se porque separe esto*/

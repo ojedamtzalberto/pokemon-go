@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Owned extends Model
 {
-    protected $table = 'owned_pokemons';
+    protected $table = 'owned_pokemon';
 
     public function pokemanz()
     {
-    	return $this->hasOne('App\Pokemon');
+    	return $this->belongsTo('App\Pokemon', 'pokemon_id');    	
     }
 }

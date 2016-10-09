@@ -84,15 +84,11 @@ if __name__ == '__main__':
             s = "\n\t{0}".format(pokemon)
             #print(str(pokemon.pokemon_id))    
             data['pokemon'][pokemon.id] = {'cp': pokemon.cp, 
-                                     'pokemon_id': pokemon.pokemon_id,
-                                     'nickname': pokemon.nickname,
-                                     'peso': pokemon.weight_kg,
-                                     'altura': pokemon.height_m,
-                                     'ataque_individual': pokemon.individual_attack,
-                                     'defensa_individual': pokemon.individual_defense,
-                                     'stamina_individual': pokemon.individual_stamina,
-                                     'movimiento_rapido': pokemon.move_1,
-                                     'movimiento_cargado': pokemon.move_2,
+                                     'id': pokemon.pokemon_id,
+                                     'pokemon_id': pokemon.id,
+                                     'individual_attack': pokemon.individual_attack,
+                                     'individual_defense': pokemon.individual_defense,
+                                     'individual_stamina': pokemon.individual_stamina,
                                      'cp_multiplier': pokemon.cp_multiplier }
 
         json.dump(data, file)
