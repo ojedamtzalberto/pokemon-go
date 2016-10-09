@@ -82,6 +82,7 @@ td.table-nom{/*Sin esto, las barras que estan en la modal son muy pequeñas porq
 .pokefondo:hover {
     background-color: #B01C3A;
  	box-shadow: 2px 2px 10px #000000;
+ 	cursor: pointer;
 }
 
 img.bot-fix{ /*Acomoda la muesca que va abajo de la imagen de pokemon*/
