@@ -12,6 +12,7 @@
                 ?>  
                 <li class="textfixnum">#{{$idzero}}</li>
                 <li class="textfixname">{{$capname}}</li>
+                <li class="textfixname">{{$po->nickname}}</li>
                  @foreach($po->tipos as $tipo)                   
                   <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
                  @endforeach

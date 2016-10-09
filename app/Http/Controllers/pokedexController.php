@@ -8,6 +8,7 @@ use App\Http\Requests;
 use DB;
 use App\Pokemon;
 use App\Tipo;
+use App\Trainer;
 use PDF;
 
 class pokedexController extends Controller
@@ -57,21 +58,35 @@ class pokedexController extends Controller
     }
 
     public function login_success(Request $request)
-    {        
+    {   
+        //Borra toda la informacion de las tablas
+        DB::table('users')->truncate();     
+        DB::table('owned_pokemons')->truncate();
+
         $usuario = $request->input('email');
         $pwd = $request->input('pwd');
+
+        //Cosos para ejecutar el script y guardar la info
         exec('/usr/bin/python /var/www/html/pokemon-go/public/scripts/demo.py -a "google" -u "'.$usuario.'" -p "'.$pwd.'"', $output, $ret_code);
         $file = getcwd().'/json/'.$output[0].'.json';
         $data = json_decode(file_get_contents($file));        
 
+        //Aqui se agrega informacion de la base de datos que no captura el script de python
         foreach($data->pokemon as &$pok) {
             $pokedex_pokemon = Pokemon::find($pok->pokemon_id);
             $pok->nombre = $pokedex_pokemon->nombre;
             $pok->tipos = $pokedex_pokemon->tipos;
             $pok->ataque_base = $pokedex_pokemon->ataque_base;            
             $pok->defensa_base = $pokedex_pokemon->defensa_base;            
-            $pok->stamina_base = $pokedex_pokemon->stamina_base;            
-        }                            
+            $pok->stamina_base = $pokedex_pokemon->stamina_base;
+        }
+
+
+        
+        $trainer = new Trainer;
+        $trainer->usuario = $data->trainer->nombre;
+        $trainer->save();
+        
 
         unlink($file);
         return view('pokemons', compact('data'));
