@@ -1,3 +1,8 @@
+@font-face {/*Importando una fuente ?)*/
+    font-family: pixe;
+    src: url('../fonts/Munro.woff') format("woff");
+}
+
 /*Barrita */
 #tipo-lista li {		
 	color: #FDFDFE;
@@ -20,6 +25,45 @@
 	right: 0px;
 }
 
+.textcp{
+	position: absolute;
+	z-index: 1;
+	top:89px;
+	left: 316px;
+	text-shadow: 
+						-2px -2px 0 #38383d,
+                          0 -2px 0 #38383d,
+                          2px -2px 0 #38383d,
+                          2px 0 0 #38383d,
+                          2px 2px 0 #38383d,
+                          0 2px 0 #38383d,
+                          -2px 2px 0 #38383d,
+                          -2px 0 0 #38383d;
+	color:white;
+	font-size: 20px;
+	font-family: pixe;
+
+}
+.numcp{
+	position: absolute;
+	z-index: 1;
+	top:80px;
+	left: 340px;
+	text-shadow: 
+						-2px -2px 0 #38383d,
+                          0 -2px 0 #38383d,
+                          2px -2px 0 #38383d,
+                          2px 0 0 #38383d,
+                          2px 2px 0 #38383d,
+                          0 2px 0 #38383d,
+                          -2px 2px 0 #38383d,
+                          -2px 0 0 #38383d;
+	color:white;
+	font-size: 30px;
+	font-family: pixe;
+
+}
+
 .tipos-no-oculto {				
 	background: #47494d;
     position: fixed;
@@ -32,6 +76,17 @@
     z-index: 10;
 }
 
+.progress {
+  position: relative;
+}
+
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+}
 .tipos-no-oculto:hover {
 	width: 150px;
 }
@@ -42,10 +97,6 @@
 
 
 
-@font-face {/*Importando una fuente ?)*/
-    font-family: pixe;
-    src: url('../fonts/Munro.woff') format("woff");
-}
 
 .modal-g{/*Para que la modal no quede gigante*/
 	max-width: 400px;

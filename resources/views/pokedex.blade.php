@@ -24,6 +24,8 @@
                   </button>
                 
                   <h5 class="textbold"><span class="badge">#{{$idzero}}</span> {{$capname}} </h5>
+                  <h5 class="textcp"><span>CP</span></h5>
+                  <h5 class="numcp"><span>999</span></h5>
                 </div>
                 <div class="modal-body modal-b">
                   <div >
@@ -53,25 +55,31 @@
                     <tr>
                       <td class="table-nom noBorder">Ataque</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$att}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$att}}%;">
+                          <span class="show">{{$po->ataque_base}}</span>
+                        </div>
+                      </div>                                                           
                       </td>
                     </tr>
                     <tr>
                       <td class="table-nom noBorder">Defensa</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$def}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$def}}%;">
+                          <span class="show">{{$po->defensa_base}}</span>
+                        </div>
+                      </div>                                               
                       </td>
                     </tr>
                     <tr>
                       <td class="table-nom noBorder">Stamina</td>
                       <td>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-warning" style="width: {{$sta}}%"></div>
-                        </div>                                              
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$sta}}%;">
+                          <span class="show">{{$po->stamina_base}}</span>
+                        </div>
+                      </div>                                             
                       </td>
                     </tr>
                   </tbody>
