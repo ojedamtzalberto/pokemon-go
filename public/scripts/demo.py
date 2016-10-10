@@ -95,6 +95,8 @@ if __name__ == '__main__':
             data['caramelos'][caramelo] = {'id': caramelo,
                                         'cantidad': trainer.session.inventory.candies[caramelo] }
 
+        print(trainer.session.inventory)
+
         json.dump(data, file)
         file.close()
         #for algo in trainer.session.inventory:

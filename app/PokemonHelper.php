@@ -240,4 +240,120 @@ class PokemonHelper
                 return 10000;
         }
     }
+
+    public function pokemonFamily($id)
+    {
+        switch($id) {
+            case $id >= 1 && $id <= 3:
+                return 1;
+            case $id >= 4 && $id <= 6:
+                return 4;
+            case $id >= 7 && $id <= 9:
+                return 7;
+            case $id >= 10 && $id <= 12:
+                return 10;
+            case $id >= 13 && $id <= 15:
+                return 13;
+            case $id >= 16 && $id <= 18:
+                return 16;
+            case $id >= 19 && $id <= 20:
+                return 19;
+            case $id >= 21 && $id <= 22:
+                return 21;
+            case $id >= 23 && $id <= 24:
+                return 23;
+            case $id >= 25 && $id <= 26:
+                return 25;
+            case $id >= 27 && $id <= 28:
+                return 27;
+            case $id >= 29 && $id <= 31:
+                return 29;
+            case $id >= 32 && $id <= 34:
+                return 32;
+            case $id >= 35 && $id <= 36:
+                return 35;
+            case $id >= 37 && $id <= 38:
+                return 37;
+            case $id >= 39 && $id <= 40:
+                return 39;
+            case $id >= 41 && $id <= 42:
+                return 41;
+            case $id >= 43 && $id <= 45:
+                return 43;
+            case $id >= 46 && $id <= 47:
+                return 46;
+            case $id >= 48 && $id <= 49:
+                return 48;
+            case $id >= 50 && $id <= 51:
+                return 50;
+            case $id >= 52 && $id <= 53:
+                return 52;
+            case $id >= 54 && $id <= 55:
+                return 54;
+            case $id >= 56 && $id <= 57:
+                return 56;
+            case $id >= 58 && $id <= 59:
+                return 58;
+            case $id >= 60 && $id <= 62:
+                return 60;
+            case $id >= 63 && $id <= 65:
+                return 63;
+            case $id >= 66 && $id <= 68:
+                return 66;
+            case $id >= 69 && $id <= 71:
+                return 69;
+            case $id >= 72 && $id <= 73:
+                return 72;
+            case $id >= 74 && $id <= 76:
+                return 74;
+            case $id >= 77 && $id <= 78:
+                return 77;
+            case $id >= 79 && $id <= 80:
+                return 79;
+            case $id >= 81 && $id <= 82:
+                return 81;
+            case $id >= 84 && $id <= 85:
+                return 84;
+            case $id >= 86 && $id <= 87:
+                return 86;
+            case $id >= 88 && $id <= 89:
+                return 88;
+            case $id >= 90 && $id <= 91:
+                return 90;
+            case $id >= 92 && $id <= 94:
+                return 92;
+            case $id >= 96 && $id <= 97:
+                return 96;
+            case $id >= 98 && $id <= 99:
+                return 98;
+            case $id >= 100 && $id <= 101:
+                return 100;
+            case $id >= 102 && $id <= 103:
+                return 102;
+            case $id >= 104 && $id <= 105:
+                return 104;
+            case $id >= 109 && $id <= 110:
+                return 109;
+            case $id >= 111 && $id <= 112:
+                return 111;
+            case $id >= 116 && $id <= 117:
+                return 116;
+            case $id >= 118 && $id <= 119:
+                return 118;
+            case $id >= 120 && $id <= 121:
+                return 120;
+            case $id >= 129 && $id <= 130:
+                return 129;
+            case $id >= 133 && $id <= 136:
+                return 133;
+            case $id >= 138 && $id <= 139:
+                return 138;
+            case $id >= 140 && $id <= 141:
+                return 140;
+            case $id >= 147 && $id <= 149:
+                return 147;
+            default:
+                return $id;
+        }
+    }
 }

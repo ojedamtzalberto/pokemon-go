@@ -75,9 +75,10 @@ class pokedexController extends Controller
         $helper = new PokemonHelper;
         $owned_id = $request->input('owned_id');
         $pokemon_id = $request->input('pokemon_id');
+        $pokemon_family = $request->input('pokemon_family');
         $pokemon = Owned::find($owned_id);
         $trainer = Trainer::first();
-        $caramelos = Caramelo::find($pokemon_id);
+        $caramelos = Caramelo::find($pokemon_family);
         
         if($caramelos->cantidad < $pokemon->caramelos) {
             return Redirect::route('lista')->with('error', 'caramelos')
@@ -109,7 +110,7 @@ class pokedexController extends Controller
         $pokemon->cp_mult = $nuevo_cp_mult;
         $pokemon->nivel = $pokemon->nivel + 0.5;
         $pokemon->polvos = $helper->getPolvos($pokemon->nivel);
-        $pokemon->caramelos = $helper->getCaramelos($pokemon->nivel);        
+        $pokemon->caramelos = $helper->getCaramelos($pokemon->nivel);
         $pokemon->save();        
 
         return Redirect::back()->with('id', $owned_id);
@@ -139,7 +140,8 @@ class pokedexController extends Controller
         $helper = new PokemonHelper;
         //Borra toda la informacion de las tablas
         DB::table('users')->truncate();     
-        DB::table('owned_pokemon')->truncate();        
+        DB::table('owned_pokemon')->truncate();      
+        DB::table('caramelos')->truncate(); 
 
         //Informacion de login
         $usuario = $request->input('email');
@@ -173,6 +175,7 @@ class pokedexController extends Controller
             $owned->ataque_individual = $pok->ataque_individual;
             $owned->defensa_individual = $pok->defensa_individual;
             $owned->stamina_individual = $pok->stamina_individual;
+            $owned->pokemon_family = $helper->pokemonFamily($pok->id);
             $owned->save();            
         }
         

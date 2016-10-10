@@ -17,6 +17,6 @@ class Owned extends Model
 
     public function caramelos_modelo()
     {
-    	return $this->belongsTo('App\Caramelo', 'pokemon_id');
+    	return $this->belongsTo('App\Caramelo', 'pokemon_family');
     }
 }

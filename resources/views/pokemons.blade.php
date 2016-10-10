@@ -115,6 +115,7 @@
                   {{ csrf_field() }}
                     <input type="hidden" name="owned_id" value="{{$po->owned_id}}">
                     <input type="hidden" name="pokemon_id" value="{{$po->pokemon_id}}">
+                    <input type="hidden" name="pokemon_family" value="{{$po->pokemon_family}}">
                     <input class="btn btn-default powerb" type="submit" value="PowerUp" onclick="return confirm('Estas seguro?')">
                     <img class="stardustimgb" src="{{asset('img/candy')}}/sd.png" alt="" />
                     {{$po->polvos}}
