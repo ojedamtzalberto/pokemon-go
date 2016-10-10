@@ -68,7 +68,7 @@ if __name__ == '__main__':
         trainer.checkInventory()
 
         filename = str(trainer.session._state.profile.player_data.username) + str(randint(0,100))
-        file = open('json/' + filename + '.json', 'w+')
+        file = open(filename + '.json', 'w+')
 
         data = {
             'trainer': {

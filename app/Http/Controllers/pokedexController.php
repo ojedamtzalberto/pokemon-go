@@ -106,10 +106,8 @@ class pokedexController extends Controller
         //$script = 'turutawindowsera';
 
         exec($python. ' '.$script.' -a "google" -u "'.$usuario.'" -p "'.$pwd.'"', $output, $ret_code);
-        $file = getcwd().'/json/'.$output[0].'.json';
+        $file = getcwd().'/'.$output[0].'.json';
         $data = @json_decode(file_get_contents($file, true));
-
-        dd($data);
 
         //Carga del json a la base de datos               
         foreach($data->pokemon as &$pok) {
@@ -128,13 +126,13 @@ class pokedexController extends Controller
             $owned->stamina_individual = $pok->stamina_individual;
             $owned->save();
         }
-
+        
         foreach($data->caramelos as &$c) {
             $caramelo = new Caramelo;
             $caramelo->id = $c->id;
             $caramelo->cantidad = $c->cantidad;
             $caramelo->save();
-        }
+        }        
         
         $trainer = new Trainer;
         $trainer->nombre = $data->trainer->nombre;
