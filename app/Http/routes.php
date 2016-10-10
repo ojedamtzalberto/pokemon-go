@@ -20,6 +20,7 @@ Route::get('/pokemon/lista', 'pokedexController@owned_pokemon')->name('lista');
 Route::get('/pokemon/tipo/{tipo_id}', 'pokedexController@filtrar_tipo_pokemon');
 Route::get('/pdf_owned/{id}', 'pokedexController@ownedPDF');
 Route::post('/pokemon/powerup', 'pokedexController@poder');
+Route::post('/pokemon/eliminar-tipo', 'pokedexController@eliminarTipo');
 
 Route::get('/login', 'pokedexController@login')->name('login');
 Route::post('/login-success', 'pokedexController@login_success');

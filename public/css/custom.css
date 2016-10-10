@@ -3,6 +3,20 @@
     src: url('../fonts/Munro.woff') format("woff");
 }
 
+.form-tipo {
+	margin-bottom: 5px;
+}
+
+.eliminar-tipo {
+	background: red;
+	border: none;
+	border-radius: 2px;
+	color: white;
+	margin-left: 10px;
+	font-size: 10px;
+	padding: 2px;
+}
+
 .starcar{
 	background-color: #47494d;
 }
@@ -121,8 +135,6 @@
 .oculto {	
 	width: 100%;
 }
-
-
 
 
 .modal-g{/*Para que la modal no quede gigante*/

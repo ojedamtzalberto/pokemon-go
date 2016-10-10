@@ -11,7 +11,7 @@
             <li class="textfixnum">#{{$idzero}}</li>
             <li class="textfixname">{{$po->pokemanz->nombre}}</li>
              @foreach($po->pokemanz->tipos as $tipo)                   
-              <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
+              <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>              
              @endforeach
         </div>  
           <div class="modal fade " id="{{$po->owned_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -36,9 +36,17 @@
                       <thead>
                         <tr  class="active">
                           <th class="centertext">Tipo:
-                              @foreach($po->pokemanz->tipos as $tipo)                   
-                                <span class="color{{$tipo->nombre}} label">{{$tipo->nombre}}</span>
-                              @endforeach     
+                              @foreach($po->pokemanz->tipos as $tipo)                                                   
+                                <form action="{{url('/pokemon/eliminar-tipo')}}" method="POST" class="form-tipo">
+                                  <span class="color{{$tipo->nombre}} label">{{$tipo->nombre}}</span>
+                                  {{ csrf_field() }}
+                                  <input type="hidden" name="pokemon_id" value="{{$po->pokemanz->id}}">                    
+                                  <input type="hidden" name="tipo_id" value="{{$tipo->id}}">                                                                  
+                                  <button type="submit" onclick="return confirm('Estas seguro?')" class="color{{$tipo->nombre}} eliminar-tipo glyphicon glyphicon-remove" aria-hidden="true">
+                                    <i class="icon-user icon-white"></i>
+                                  </button>
+                                </form>
+                              @endforeach
                           </th>
 
                         </tr>
@@ -131,7 +139,7 @@
             </div>
           </div>    
 
-  @endforeach
+  @endforeach  
 
 @stop
 

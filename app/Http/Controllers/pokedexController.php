@@ -12,6 +12,7 @@ use App\Tipo;
 use App\Trainer;
 use App\Owned;
 use App\Caramelo;
+use App\PokemonTipo;
 use App\PokemonHelper;
 use PDF;
 
@@ -68,6 +69,19 @@ class pokedexController extends Controller
         $dompdf=\App::make('dompdf.wrapper');
         $dompdf->loadHTML($vista);
         return $dompdf->stream();
+    }
+
+    public function eliminarTipo(Request $request)
+    {
+        $tipo_id = $request->input('tipo_id');
+        $pokemon_id = $request->input('pokemon_id');
+
+        DB::table('pokemon_tipo')
+                    ->where('pokemon_tipo.tipo_id', '=', $tipo_id)
+                    ->where('pokemon_tipo.pokemon_id', '=', $pokemon_id)
+                    ->delete();          
+
+        return Redirect::route('lista');
     }
 
     public function poder(Request $request)
