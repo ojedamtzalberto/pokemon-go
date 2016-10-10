@@ -90,10 +90,41 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>                  
+                </table>           
+
+                <table class="table table-hover bor cellspacing="0" cellpadding="0"">
+                  <tbody>
+                    <tr class="starcar">
+                      <td class="stardust">
+                        <img class="stardustimg" src="{{asset('img/candy')}}/sd.png" alt="" />                                        
+                      </td>
+                      <td class="table-nom noBorder numstar">{{$trainer->polvos}}</td>
+                      <td>
+                      <td class="stardust">
+                        <img class="stardustimg" src="{{asset('img/candy')}}/{{$po->pokemon_id}}.png" alt="" />                                        
+                      </td>                                                                        
+                      </td>
+                      <td class="table-nom noBorder numstar">{{$po->caramelos_modelo['cantidad']}}</td>
+                    </tr>    
+                                                      
+                  </tbody>
+                </table> 
+
+                <div class="powerup">                                    
+                  <form action="{{url('/pokemon/powerup')}}" method="POST">
+                  {{ csrf_field() }}
+                    <input type="hidden" name="owned_id" value="{{$po->owned_id}}">
+                    <input type="hidden" name="pokemon_id" value="{{$po->pokemon_id}}">
+                    <input class="btn btn-default powerb" type="submit" value="PowerUp" onclick="return confirm('Estas seguro?')">
+                    <img class="stardustimgb" src="{{asset('img/candy')}}/sd.png" alt="" />
+                    {{$po->polvos}}
+                    <img class="stardustimgb" src="{{asset('img/candy')}}/{{$po->pokemon_id}}.png" alt="" />
+                    {{$po->caramelos}}
+                  </form>                  
+                </div>        
                                       
                 <div class="modal-footer modal-f">
-                   <a href="/pokemon-go/public/pdf/{{$po->pokemanz->id}}" class="btn  btn-default ">PDF</a>
+                  <a href="/pokemon-go/public/pdf_owned/{{$po->owned_id}}" class="btn btn-default" target="_blank">PDF</a>                  
                 </div>
               </div>
             </div>
@@ -101,5 +132,24 @@
 
   @endforeach
 
+@stop
 
+@section('scripts')
+  @if(!empty(Session::get('id')))
+    <script>        
+        $(document).ready(function(){
+            $('#{{Session::get('id')}}').modal('show');
+        });
+    </script>
+  @endif
+  @if(!empty(Session::get('error')))
+    <script>        
+        $(document).ready(function(){
+            $('#{{Session::get('id')}}').modal('show'); 
+            setTimeout(function(){
+                alert("No tienes suficientes {{Session::get('error')}}");
+            }, 200);
+        });
+    </script>
+  @endif
 @stop

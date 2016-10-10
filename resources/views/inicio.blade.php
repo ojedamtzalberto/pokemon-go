@@ -200,7 +200,7 @@
             <button type="submit" class="btn btn-default">Buscar</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
+            <li><a href="{{url('/logout')}}">Cerrar Sesión</a></li>
           </ul>
         </div>
       </div>
@@ -214,9 +214,10 @@
                 </div>
             </div>
         </div>
-
+        
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/eventos.js')}}"></script>
+    @yield('scripts')
 </body>
 </html>

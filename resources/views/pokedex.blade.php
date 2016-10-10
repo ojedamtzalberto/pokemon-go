@@ -23,9 +23,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 
-                  <h5 class="textbold"><span class="badge">#{{$idzero}}</span> {{$capname}} </h5>
-                  <h5 class="textcp"><span>CP</span></h5>
-                  <h5 class="numcp"><span>999</span></h5>
+                  <h5 class="textbold"><span class="badge">#{{$idzero}}</span> {{$capname}} </h5>                  
                 </div>
                 <div class="modal-body modal-b">
                   <div >
@@ -86,7 +84,7 @@
                 </table>                  
                                       
                 <div class="modal-footer modal-f">
-                   <a href="/pokemon-go/public/pdf/{{$po->id}}" class="btn  btn-default ">PDF</a>
+                   <a href="/pokemon-go/public/pdf/{{$po->id}}" class="btn btn-default" target="_blank">PDF</a>
                 </div>
               </div>
             </div>

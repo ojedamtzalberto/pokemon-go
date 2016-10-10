@@ -12,12 +12,15 @@
 */
 
 Route::get('/', 'pokedexController@inicio');
-Route::get('/owned', 'pokedexController@owned');
 Route::get('/pokedex/tipo/{tipo_id}', 'pokedexController@filtrar_tipo_pokedex');
 Route::get('/pokedex/pokemon', 'pokedexController@busca_pokemon');
-
-Route::get('/pokemon/tipo/{tipo_id}', 'pokedexController@filtrar_tipo_pokemon');
-
 Route::get('/pdf/{id}', 'pokedexController@mPDF');
-Route::get('/login', 'pokedexController@login');
+
+Route::get('/pokemon/lista', 'pokedexController@owned_pokemon')->name('lista');
+Route::get('/pokemon/tipo/{tipo_id}', 'pokedexController@filtrar_tipo_pokemon');
+Route::get('/pdf_owned/{id}', 'pokedexController@ownedPDF');
+Route::post('/pokemon/powerup', 'pokedexController@poder');
+
+Route::get('/login', 'pokedexController@login')->name('login');
 Route::post('/login-success', 'pokedexController@login_success');
+Route::get('/logout', 'pokedexController@logout');

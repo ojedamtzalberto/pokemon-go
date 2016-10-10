@@ -3,6 +3,33 @@
     src: url('../fonts/Munro.woff') format("woff");
 }
 
+.starcar{
+	background-color: #47494d;
+}
+.powerb{
+	font-weight: bold;
+}
+.powerup{
+	padding-bottom: 20px;
+	text-align:center;
+	margin:auto;
+
+}
+.stardust{
+	width: 15px;
+}
+.stardustimgb{
+	width: 13px;
+}
+.numstar{
+	position: relative;
+	top:6px;
+}
+.stardustimg{
+	width: 30px;
+
+}
+
 /*Barrita */
 #tipo-lista li {		
 	color: #FDFDFE;
