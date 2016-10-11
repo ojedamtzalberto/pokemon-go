@@ -32,12 +32,14 @@
       top:100px;
       left: 150px;
     }
+    .capitalize {
+      text-transform: capitalize;
+    }
   </style>   
-  <?php
-    $capname =ucfirst("$pokemon->nombre");
+  <?php    
     $idzero = $value = sprintf( '%03d', $pokemon->pokemon_id);
    ?>  
-      <title>{{$capname}}</title>
+      <title>{{$pokemon->pokemanz->nombre}}</title>
      
     </head>
       <body>   
@@ -52,7 +54,7 @@
             </tr>
             <tr>
               <td>Nombre:</td>
-              <td>{{$capname}}</td>
+              <td class="capitalize">{{$pokemon->pokemanz->nombre}}</td>
             </tr>
             <tr>
               <td align="left" >Tipo:</td>

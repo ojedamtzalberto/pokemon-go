@@ -16,10 +16,11 @@ Route::get('/pokedex/tipo/{tipo_id}', 'pokedexController@filtrar_tipo_pokedex');
 Route::get('/pokedex/pokemon', 'pokedexController@busca_pokemon');
 Route::get('/pdf/{id}', 'pokedexController@mPDF');
 
-Route::get('/pokemon/lista', 'pokedexController@owned_pokemon')->name('lista');
+Route::get('/pokemon/lista/{orderby?}', 'pokedexController@owned_pokemon')->name('lista');
 Route::get('/pokemon/tipo/{tipo_id}', 'pokedexController@filtrar_tipo_pokemon');
 Route::get('/pdf_owned/{id}', 'pokedexController@ownedPDF');
-Route::post('/pokemon/powerup', 'pokedexController@poder');
+Route::post('/pokemon/powerup', 'pokedexController@powerup');
+Route::post('/pokemon/evolucionar', 'pokedexController@evolucionar');
 Route::post('/pokemon/eliminar-tipo', 'pokedexController@eliminarTipo');
 
 Route::get('/login', 'pokedexController@login')->name('login');

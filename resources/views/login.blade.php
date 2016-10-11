@@ -31,5 +31,29 @@
 		    </div>
 		  </fieldset>
 		</form>
+
+		<div class="error hidden">
+			<div class="panel panel-danger">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Aviso</h3>
+			  </div>
+			  <div class="panel-body">
+			    Necesitas estar logueado para usar esta función
+			  </div>
+			</div>
+		</div>
 	</div>
+@stop
+
+@section('scripts')
+  @if(!empty(Session::get('error')))
+    <script>        
+        $(document).ready(function(){
+        	$('input').focus(function(){
+        		$('.error').addClass("hidden");
+        	});
+        	$('.error').removeClass("hidden");
+        });
+    </script>
+  @endif
 @stop

@@ -28,7 +28,7 @@ class pokedexController extends Controller
 
     public function inicio()
     {
-    	$pokemons = Pokemon::paginate(24);
+    	$pokemons = Pokemon::all();
         $tipos = Tipo::orderBy('nombre')->get();
 
     	return view('pokedex', compact('pokemons','tipos'));
@@ -36,7 +36,7 @@ class pokedexController extends Controller
 
     public function filtrar_tipo_pokedex($tipo_id)
     {
-    	$pokemons = Tipo::find($tipo_id)->pokemons()->paginate(24);
+    	$pokemons = Tipo::find($tipo_id)->pokemons()->get();
         $tipos = Tipo::orderBy('nombre')->get();
 
     	return view('pokedex',compact('pokemons','tipos'));
@@ -44,7 +44,7 @@ class pokedexController extends Controller
 
     public function busca_pokemon(Request $request)
     {
-        $pokemons = Pokemon::where('nombre',$request->pokemon)->paginate(10);
+        $pokemons = Pokemon::where('nombre',$request->pokemon)->get();
         $tipos = Tipo::orderBy('nombre')->get();
 
         return view('pokedex',compact('pokemons','tipos'));
@@ -84,7 +84,7 @@ class pokedexController extends Controller
         return Redirect::route('lista');
     }
 
-    public function poder(Request $request)
+    public function powerup(Request $request)
     {        
         $helper = new PokemonHelper;
         $owned_id = $request->input('owned_id');
@@ -104,8 +104,8 @@ class pokedexController extends Controller
         }
 
         //Se quitan caramelos y polvos
-        $trainer->polvos = $trainer->polvos - $pokemon->polvos;
-        $caramelos->cantidad = $caramelos->cantidad - $pokemon->caramelos;
+        $trainer->polvos -= $pokemon->polvos;
+        $caramelos->cantidad -= - $pokemon->caramelos;
         $trainer->save();
         $caramelos->save();
 
@@ -122,7 +122,7 @@ class pokedexController extends Controller
         $cp = ($atq * pow($def, 0.5) * pow($sta, 0.5) * pow($nuevo_cp_mult, 2)) / 10;                
         $pokemon->cp = (int)$cp;
         $pokemon->cp_mult = $nuevo_cp_mult;
-        $pokemon->nivel = $pokemon->nivel + 0.5;
+        $pokemon->nivel += 0.5;
         $pokemon->polvos = $helper->getPolvos($pokemon->nivel);
         $pokemon->caramelos = $helper->getCaramelos($pokemon->nivel);
         $pokemon->save();        
@@ -130,10 +130,44 @@ class pokedexController extends Controller
         return Redirect::back()->with('id', $owned_id);
     }
 
+    public function evolucionar(Request $request)
+    {
+        $helper = new PokemonHelper;
+        $owned_id = $request->input('owned_id');
+        $pokemon_id = $request->input('pokemon_id');
+        $pokemon_family = $request->input('pokemon_family');
+        $pokemon = Owned::find($owned_id);
+        $trainer = Trainer::first();
+        $caramelos = Caramelo::find($pokemon_family);
+        $pokedex_pok = Pokemon::find($pokemon_id);
+        $pokemon_evolucion = Pokemon::find($pokemon_id + 1); 
+
+        if($caramelos->cantidad < $pokedex_pok->caramelos_evolucion) {
+            return Redirect::route('lista')->with('error', 'caramelos')
+                                   ->with('id', $owned_id);
+        }
+
+        //Se quitan caramelos y polvos        
+        $caramelos->cantidad -= $pokedex_pok->caramelos_evolucion;        
+        $caramelos->save();
+
+        $pokemon->pokemon_id += 1;
+        //Calcula ataque, defensa, stamina para obtener CP
+        $atq = ($pokemon->ataque_individual + $pokemon_evolucion->ataque_base);
+        $def = ($pokemon->defensa_individual + $pokemon_evolucion->defensa_base);
+        $sta = ($pokemon->stamina_individual + $pokemon_evolucion->stamina_base);
+        // CP = (Attack * Defense^0.5 * Stamina^0.5 * CP_Multiplier^2) / 10
+        $cp = ($atq * pow($def, 0.5) * pow($sta, 0.5) * pow($pokemon->cp_mult, 2)) / 10;
+        $pokemon->cp = $cp;
+        $pokemon->save();
+
+        return Redirect::back()->with('pokemon_actual', $owned_id)->with('pokemon_anterior', $pokemon_id);
+    }
+
     public function filtrar_tipo_pokemon($tipo_id)
     {     
         $trainer = Trainer::first();
-        $pokedex_tipo = Tipo::find($tipo_id)->pokemons;        
+        $pokedex_tipo = Tipo::find($tipo_id)->pokemons;
         $tipos = Tipo::orderBy('nombre')->get();
         $pokemons = collect([]);
         
@@ -210,20 +244,42 @@ class pokedexController extends Controller
         return redirect()->action('pokedexController@owned_pokemon');
     }
 
-    public function owned_pokemon()
+    public function owned_pokemon(Request $request, $orderby = 'id')
     {
-        $pokemons = Owned::orderBy('pokemon_id')->get();
+        $trainer = Trainer::first();
+        $pokemons = collect([]);
 
-        if($pokemons->isEmpty()) {
-            return Redirect::route('login');
+        if($request->orderby) {
+            $orderby = $request->orderby;
+        }
+
+        if($orderby == 'nombre' || $orderby == 'id') {
+            $pokemon_model = Pokemon::orderBy($orderby,'DESC')->get();
+        }
+
+        elseif($orderby == 'cp') {
+            $pokemons = Owned::orderBy('cp','DESC')->get();        
+        }
+
+        if(!$trainer) {
+            return Redirect::route('login')->with('error','Necesitas estar logueado para esta función');
+        }
+
+        if(isset($pokemon_model)) {
+            foreach($pokemon_model as $po)
+            {
+                if(count($po->ownedpoke) > 0) {
+                    foreach($po->ownedpoke as $op) {
+                        $pokemons->prepend($op);
+                    }   
+                }
+            }
         }
 
         $tipos = Tipo::orderBy('nombre')->get();        
-        $trainer = Trainer::first();
         return view('pokemons', compact('pokemons', 'tipos', 'trainer'));
     }
 
 
 
 }
-

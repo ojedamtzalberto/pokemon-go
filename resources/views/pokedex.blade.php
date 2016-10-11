@@ -11,7 +11,7 @@
             ?>  
             <li class="textfixnum">#{{$idzero}}</li>
             <li class="textfixname">{{$capname}}</li>
-             @foreach($po->tipos as $tipo)                   
+             @foreach($po->tipos as $tipo)
               <span class="color{{$tipo->nombre}} label sizelabel">{{$tipo->nombre}}</span>
              @endforeach
         </div>  
@@ -54,7 +54,7 @@
                       <td class="table-nom noBorder">Ataque</td>
                       <td>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$att}}%;">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
                           <span class="show">{{$po->ataque_base}}</span>
                         </div>
                       </div>                                                           
@@ -64,7 +64,7 @@
                       <td class="table-nom noBorder">Defensa</td>
                       <td>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$def}}%;">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
                           <span class="show">{{$po->defensa_base}}</span>
                         </div>
                       </div>                                               
@@ -74,7 +74,7 @@
                       <td class="table-nom noBorder">Stamina</td>
                       <td>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$sta}}%;">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
                           <span class="show">{{$po->stamina_base}}</span>
                         </div>
                       </div>                                             
