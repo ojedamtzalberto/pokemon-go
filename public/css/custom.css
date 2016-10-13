@@ -174,7 +174,7 @@ td.table-nom{/*Sin esto, las barras que estan en la modal son muy pequeñas porq
 
 .pokefondo{ /*Cuadro, donde va cada pokemon*/
 	background-image: url("../img/1_f.png");
-    background-color: #C2C2C2;
+    background-color: pink;
     margin:20px;
     padding: 30px;
     max-width: 245px;

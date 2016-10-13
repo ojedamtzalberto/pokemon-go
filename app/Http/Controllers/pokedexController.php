@@ -280,6 +280,4 @@ class pokedexController extends Controller
         return view('pokemons', compact('pokemons', 'tipos', 'trainer'));
     }
 
-
-
 }
